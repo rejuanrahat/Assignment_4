@@ -55,19 +55,20 @@ function render() {
         card.className = `bg-white p-5 rounded-xl shadow-sm border-2 ${borderClass} transition-all`;
 
         card.innerHTML = `
-        <div class="flex justify-between items-start mb-2">
-            <div>
-                <h4 class="text-primary font-bold text-lg"> ${job.company}</h4>
-                <p class="font-bold text-slate-700">${job.position}</p>
+            <div class="flex justify-between items-start mb-2">
+                <div>
+                    <h4 class="text-primary font-bold text-lg">${job.company}</h4>
+                    <p class="font-bold text-slate-700">${job.position}</p>
+                </div>
+                <button data-id="${job.id}" data-action="delete" class="btn btn-ghost btn-xs text-error">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
             </div>
-            <button data-id="${job.id}" data-action="delete" class="btn btn-ghost btn-xs text-error">
-                <i class="fa-solid fa-trash"></i>
-            </button>
-        <div class="flex flex-wrap gap-3 text-xs text-gray-400 mb-3">
-            <span> ${job.location}</span> • <span> ${job.type}</span> • <span> ${job.salary}</span>
-        </div>
+            <div class="flex flex-wrap gap-3 text-xs text-gray-400 mb-3">
+                <span> ${job.location}</span> • <span> ${job.type}</span> • <span> ${job.salary}</span>
+            </div>
 
-         ${job.status !== 'all' ? `
+            ${job.status !== 'all' ? `
                 <div class="mb-3">
                     <span class="badge ${job.status === 'interview' ? 'badge-success' : 'badge-error'} text-white font-bold uppercase p-3">
                         ${job.status}
@@ -75,11 +76,11 @@ function render() {
                 </div>
             ` : ''}
 
-        <p class="text-sm text-gray-600 mb-4">${job.description}</p>
-        <div class="flex gap-2">
-            <button data-id="${job.id}" data-action="interview" class="btn btn-sm btn-outline btn-success">Interview</button>
-            <button data-id="${job.id}" data-action="rejected" class="btn btn-sm btn-outline btn-error">Rejected</button>
-        </div>    
+            <p class="text-sm text-gray-600 mb-4">${job.description}</p>
+            <div class="flex gap-2">
+                <button data-id="${job.id}" data-action="interview" class="btn btn-sm btn-outline btn-success">Interview</button>
+                <button data-id="${job.id}" data-action="rejected" class="btn btn-sm btn-outline btn-error">Rejected</button>
+            </div>
         `;
         jobContainer.appendChild(card);
     });
