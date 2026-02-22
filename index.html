@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Tracker</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+        <style>
+            * {
+                font-family: "Roboto Condensed", sans-serif;
+            }
+        </style>
+</head>
+
+<body class="bg-gray-100 min-h-screen p-4 md:p-8">
+
+    <div class="max-w-4xl mx-auto">
+
+        <h1 class="text-3xl font-bold mb-8 text-center text-slate-800">Job Application Tracker</h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+            <div class="bg-white p-6 rounded-xl shadow-sm text-center border-b-4 border-primary">
+                <p class="text-gray-500 font-medium">Total</p>
+                <h2 id="total-count" class="text-4xl font-bold text-primary">0</h2>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm text-center border-b-4 border-success">
+                <p class="text-gray-500 font-medium">Interview</p>
+                <h2 id="interview-count" class="text-4xl font-bold text-success">0</h2>
+            </div>
+            <div class="bg-white p-6 rounded-xl shadow-sm text-center border-b-4 border-error">
+                <p class="text-gray-500 font-medium">Rejected</p>
+                <h2 id="rejected-count" class="text-xl font-bold text-error">0</h2>
+            </div>
+        </div>
+
+        <div class="flex justify-between items-end mb-4 px-2">
+            <h3 class="text-xl text-black font-bold">Abailable Jobs</h3>
+            <span class="text-sm font-semibold text-gray-400"> <span id="tap-count">0</span>Jobs</span>
+        </div>
+
+        <div id="taps" class="tabs tabs-boxed mb-6 bg-white p-1">
+            <button class="tab tab-active flex-1" data-tab="all">All</button>
+            <button class="tab flex-1" data-tab="interview">Interview</button>
+            <button class="tab flex-1" data-tab="rejected">Rejected</button>
+        </div>
+
+        <div id="job-container" class="space-y-4">
+        </div>
+
+        <div id="empty-state"class="hidden flex flex-col items-center justify-center py-20 bg-white rounded-xl shadow-sm">
+            <img src="./assest/jobs.png" alt="" class="w-24 h-24 mb-6 object-contain">
+            <h3 class="text-2xl font-bold text-black">No Job Abailable</h3>
+            <p class="text-gray-500 mt-2">Check back soon for new job opportunities</p>
+        </div>
+    </div>
+</body>
+
+</html>
