@@ -1,6 +1,6 @@
 let jobs = [
     {
-        id: 1, company:"mobile First Corp", position: "React Native Developer", location: "Remote", type: "full-time", salary: "$130,000 - $175,000", description: "Build cross-platform mobile applications using React Native.", status: "all"  
+        id: 1, company: "mobile First Corp", position: "React Native Developer", location: "Remote", type: "full-time", salary: "$130,000 - $175,000", description: "Build cross-platform mobile applications using React Native.", status: "all"
     },
 
     {
@@ -12,7 +12,7 @@ let jobs = [
     },
 
     {
-        id: 4, company: "CloudFirst Inc", position: "Backend Developer", location: "Seattle, WA", type: "Full-time", salary: "$140,000 - $190,000",description: "Design and maintain scalable backend systems using Python.", status: "all"
+        id: 4, company: "CloudFirst Inc", position: "Backend Developer", location: "Seattle, WA", type: "Full-time", salary: "$140,000 - $190,000", description: "Design and maintain scalable backend systems using Python.", status: "all"
     },
 
     {
@@ -32,3 +32,88 @@ let jobs = [
     }
 ]
 
+let activeTab = "all";
+const jobContainer = document.getElementById('job-container');
+const tabContainer = document.getElementById('taps');
+
+function render() {
+    const filtered = activeTab === "all" ? jobs : jobs.filter(j => j.status === activeTab);
+
+    document.getElementById('total-count').innerText = jobs.length;
+    document.getElementById('interview-count').innerText = jobs.filter(j => j.status === 'interview').length;
+    document.getElementById('rejected-count').innerText = jobs.filter(j => j.status === 'rejected').length;
+    document.getElementById('tap-count').innerText = filtered.length;
+
+    document.getElementById('empty-state').classList.toggle('hidden', filtered.length > 0);
+    jobContainer.innerHTML = "";
+
+    filtered.forEach(job => {
+        const card = document.createElement('div');
+
+        const borderClass = job.status === 'interview' ? 'border-success' : job.status === 'rejected' ? 'border-error' : 'border-gray-200';
+
+        card.className = `bg-white p-5 rounded-xl shadow-sm border-2 ${borderClass} transition-all`;
+
+        card.innerHTML = `
+        <div class="flex justify-between items-start mb-2">
+            <div>
+                <h4 class="text-primary font-bold text-lg"> ${job.company}</h4>
+                <p class="font-bold text-slate-700">${job.position}</p>
+            </div>
+            <button data-id="${job.id}" data-action="delete" class="btn btn-ghost btn-xs text-error">
+                <i class="fa-solid fa-trash"></i>
+            </button>
+        <div class="flex flex-wrap gap-3 text-xs text-gray-400 mb-3">
+            <span> ${job.location}</span> • <span> ${job.type}</span> • <span> ${job.salary}</span>
+        </div>
+
+         ${job.status !== 'all' ? `
+                <div class="mb-3">
+                    <span class="badge ${job.status === 'interview' ? 'badge-success' : 'badge-error'} text-white font-bold uppercase p-3">
+                        ${job.status}
+                    </span>
+                </div>
+            ` : ''}
+
+        <p class="text-sm text-gray-600 mb-4">${job.description}</p>
+        <div class="flex gap-2">
+            <button data-id="${job.id}" data-action="interview" class="btn btn-sm btn-outline btn-success">Interview</button>
+            <button data-id="${job.id}" data-action="rejected" class="btn btn-sm btn-outline btn-error">Rejected</button>
+        </div>    
+        `;
+        jobContainer.appendChild(card);
+    });
+}
+
+if (jobContainer) {
+    jobContainer.addEventListener('click', (e) => {
+        const btn = e.target.closest('button');
+        if (!btn) return;
+
+        const id = parseInt(btn.dataset.id);
+        const action = btn.dataset.action;
+
+        if (action === 'delete') {
+            jobs = jobs.filter(j => j.id != id);
+        } else {
+            const found = jobs.find(j => j.id === id);
+            if (found) found.status = action;
+        }
+        render();
+    });
+}
+
+if (tabContainer) {
+    tabContainer.addEventListener('click', (e) => {
+        const tabBtn = e.target.closest('.tab');
+        if (!tabBtn) return;
+
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('tab-active'));
+        tabBtn.classList.add('tab-active');
+
+        activeTab = tabBtn.dataset.tab;
+        render();
+    });
+}
+
+render();
