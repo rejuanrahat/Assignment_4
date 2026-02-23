@@ -1,20 +1,23 @@
-# Features :
+# 1.  What is the difference between getElementById, getElementsByClassName, and querySelector / querySelectorAll?
 
-## Dashbord Overview : Quick see your total applications, total interviews and total rejected at a top-lebel glancce.
-## Dynamic Filtering: Switch between "All", "Interview", and "Rejected" tabs to filter your job list instantly.
-## Status management : Update a job status "Interview" or "Rejected" taps to filter your job list instantly.
-## Delete funttionality : Remove old or accidental entries from your list using the trush icon.
-## Responsive design : Works perfectly on desktop, tablets and mobile phones thanks to tailwind css.
+     1. getElementById() : You can call a id from html using this.
 
+     2. getElementByClassName : You can call a class from html by this.
 
+     3. querySelector : A mordern way to find the first element that matches CSS selector.
 
-# Technology used :
-
-## used HTML5, Tailwind css, DaisyUI and Java Script to compleate this.
+     4. querySelectorAll : just like querySelector, but it finds every elements that matches the description.
 
 
-# File Structure :
+# 2. How do you create and insert a new element into the DOM?
 
-  ## index.html - The main user interface and layout.
-  ## script/job.js - Contains the job data and all the Java Scritp logic for fealtaring and updating.
-  ## assest/ - for containing fav icon and image used in the project.
+  we can create and insert a new element following 3 steps.
+
+    1. createElement() : Get a element to insert.
+    2. innerText/classList : paint the element and weite on it.
+    3. appendChild() : Snap the price into the page
+
+
+# 3. What is Event Bubbling? And how does it work?
+
+    
