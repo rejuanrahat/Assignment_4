@@ -20,4 +20,24 @@
 
 # 3. What is Event Bubbling? And how does it work?
 
-    
+    Event Bubbling is when you click on an element that is inside another element, the "click" doesn't just happen to that one      tiny spot. It bubbles up to its perent, then to grandparent, all the way up to the very top of the wrbpage.
+
+## It's work in 3 steps.
+
+     1. The Target: You click the button, the buttons click event fires first.
+     2. The Bubble: The event bubble up to the Box. The box was thinks it was cliked too.
+     3. The Top: the event continues up to the Body of the page.
+
+
+# 4. What is Event Delegation in JavaScript? Why is it useful?
+
+     Event delegation is a clever way to handle events by using the Event Bubbling.
+
+  Why is it usefull?
+     Adding 1 lidtener is mouch cheaper for your computer memory then adding 100 or 10,000 listeners. This makes your website      run faster.
+
+
+# 5. What is the difference between preventDefault() and stopPropagation() methods?
+
+     preventDefault() : Stops the Brouser from doing its default johb.
+     stopPropagation() : Stops the click from bubbling up. It tels the event: "stop here!Dont tell my parent boxes that I yas      clicked".
